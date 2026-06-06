@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>נתיבי ילדות - פורטל לימוד אינטראקטיבי בפסיכולוגיה התפתחותית</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Heebo & Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Heebo', 'Rubik', sans-serif;
+            background-color: #f8fafc;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
+        }
+        .card-perspective {
+            perspective: 1000px;
+        }
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="header-gradient text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-teal-500 p-2.5 rounded-xl shadow-md">
+                    <!-- SVG Educational Icon -->
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-tight">נתיבי ילדות</h1>
+                    <p class="text-xs text-teal-100 font-medium">פורטל לימוד אינטראקטיבי בפסיכולוגיה התפתחותית</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchTab('study')" id="btn-tab-study" class="nav-btn bg-teal-500 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all shadow">
+                    מרחב למידה
+                </button>
+                <button onclick="switchTab('tools')" id="btn-tab-tools" class="nav-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all">
+                    כלי מחקר וסימולטורים
+                </button>
+                <button onclick="switchTab('flashcards')" id="btn-tab-flashcards" class="nav-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all">
+                    כרטיסיות שינון
+                </button>
+                <button onclick="switchTab('quiz')" id="btn-tab-quiz" class="nav-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all">
+                    בוחן עצמי מקיף
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 sm:px-6 lg:px-8">
+
+        <!-- ==================== TAB 1: STUDY SPACE ==================== -->
+        <section id="tab-study" class="tab-content block">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Navigation Sidebar (Sticky) -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 sticky top-24">
+                        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">נושאי הלימוד</h3>
+                        <div class="space-y-1">
+                            <button onclick="scrollToSection('sec-intro')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+                                שיעור 1: מבוא והגדרות
+                            </button>
+                            <button onclick="scrollToSection('sec-nature')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                שיעור 2: תורשה וסביבה
+                            </button>
+                            <button onclick="scrollToSection('sec-theories')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                שיעור 3: תיאוריות מרכזיות
+                            </button>
+                            <button onclick="scrollToSection('sec-resilience')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                                שיעור 4: חוסן, סיכון ומגן
+                            </button>
+                            <button onclick="scrollToSection('sec-pregnancy')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                                שיעור 5: היריון, לידה ופגות
+                            </button>
+                            <button onclick="scrollToSection('sec-attachment')" class="w-full text-right px-3 py-2 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-teal-600 transition-all flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                שיעור 6: אינטראקציה והתקשרות
+                            </button>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-slate-100">
+                            <div class="bg-teal-50 rounded-xl p-3 text-center">
+                                <h4 class="text-xs font-bold text-teal-800 mb-1">רוצה לבדוק את עצמך?</h4>
+                                <p class="text-[11px] text-teal-600 mb-2">פתרנו עבורך 10 שאלות מבחן אמיתיות!</p>
+                                <button onclick="switchTab('quiz')" class="bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-all shadow-sm">למעבר לבוחן</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Study Materials Content Area -->
+                <div class="lg:col-span-3 space-y-12">
+                    
+                    <!-- SECTION 1: INTRODUCTION -->
+                    <article id="sec-intro" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 1</span>
+                            <h2 class="text-2xl font-bold text-slate-900">מבוא והגדרות יסוד בפסיכולוגיה התפתחותית</h2>
+                        </div>
+                        
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            הפסיכולוגיה ההתפתחותית חוקרת התנהגויות אופייניות לכל גיל ואת השינויים החלים בהן מיום התהוות האדם ועד מותו. היא משלבת בין דיסציפלינה אקדמית (בעלת חוזק מחקרי מובהק) לבין דיסציפלינה יישומית השואפת לקדם את רווחת הילד ומשפחתו.
+                        </p>
+
+                        <!-- Key Definition Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+                                    <h4 class="font-bold text-slate-800">התפתחות (Development)</h4>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    שינויים איכותיים, תלויי-גיל וארגונים מחדש של התנהגות שהם:
+                                    <span class="block mt-1 font-semibold text-teal-700">• סדירים: חלים ברצף הגיוני המאפשר הבנה על רקע הקודם.</span>
+                                    <span class="block font-semibold text-teal-700">• מצטברים: כל שלב כולל את כל מה שהיה לפניו פלוס ערך מוסף.</span>
+                                    <span class="block font-semibold text-teal-700">• בעלי כיוון: מתקדמים תמיד לקראת מורכבות רבה יותר.</span>
+                                </p>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+                                    <h4 class="font-bold text-slate-800">נורמטיבית מול אישית</h4>
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    <strong class="text-slate-700">התפתחות נורמטיבית:</strong> שינויים כלליים וארגון מחדש של התנהגות החלים אצל כמעט כל הילדים במהלך גדילתם.
+                                    <br><strong class="text-slate-700 block mt-2">התפתחות אישית:</strong> השונות הבין-אישית, ההתנהגויות הייחודיות והקצב המאפיין כל אדם ואדם בפני עצמו.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Historical Foundations Toggle Grid -->
+                        <h3 class="font-bold text-slate-800 mb-3 text-sm uppercase tracking-wider">אבני דרך היסטוריות ופילוסופיות</h3>
+                        <div class="bg-teal-50/50 rounded-2xl p-4 border border-teal-100/50 text-slate-700 text-xs leading-relaxed space-y-3">
+                            <p>
+                                🦕 <strong>נער הפרא מאוורון (ויקטור, 1799):</strong> מקרה בוחן מכונן של נער שגדל ביער ללא אינטראקציה אנושית. רופא צרפתי ניסה ללמדו שפה ללא הצלחה משמעותית (רק מעט שפת סימנים). המקרה הוכיח קיום של <strong>תקופות קריטיות</strong> בהתפתחות - אם כישורים לא נרכשים בזמן המיועד לכך במוח, יהיה קשה או בלתי אפשרי לרכשם מאוחר יותר.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                                <div class="bg-white p-3 rounded-xl shadow-xs">
+                                    <strong class="text-teal-800 block mb-1">רוסו</strong>
+                                    "הפרא האציל" - הילד נולד טוב מיסודו והחברה עלולה לקלקלו.
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-xs">
+                                    <strong class="text-teal-800 block mb-1">ג'ון לוק</strong>
+                                    "טאבולה ראסה" - לוח חלק שהניסיון והסביבה מעצבים באופן מלא.
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-xs">
+                                    <strong class="text-teal-800 block mb-1">הובס</strong>
+                                    "מצב הטבע" - האדם רע מיסודו ויש צורך בחוקים ומשמעת כדי לרסנו.
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 2: NATURE VS NURTURE -->
+                    <article id="sec-nature" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 2</span>
+                            <h2 class="text-2xl font-bold text-slate-900">תורשה מול סביבה ומערכי מחקר</h2>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            אחת השאלות המרכזיות היא כיצד הגנוטיפ (המטען הגנטי המורש) בא באינטראקציה עם ההתנסויות הסביבתיות ליצירת הפנוטיפ (ההתנהגות והמראה בפועל).
+                        </p>
+
+                        <!-- Key Concepts -->
+                        <div class="space-y-4 mb-6">
+                            <div class="flex gap-4">
+                                <div class="text-blue-500 font-bold text-lg">01</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">פילוגנטיקה מול אונטוגנטיקה</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        <strong class="text-slate-700">פילוגנטיקה:</strong> המורשת האבולוציונית של המין האנושי כולו (למשל, נטייה מולדת לחברתיות ולמידת שפה).
+                                        <br><strong class="text-slate-700">אונטוגנטיקה:</strong> המטען הגנטי האישי וההתפתחות הייחודית של הפרט הספציפי.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="text-blue-500 font-bold text-lg">02</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">חיפוש נישה גנטית (Niche Picking)</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        בניגוד לצמחים, ילדים בוחרים ומעצבים באופן פעיל את סביבתם על פי נטיותיהם הגנטיות. ילד בעל נטייה גנטית למוזיקה יימשך באופן טבעי לכלי נגינה ויעצים את הפוטנציאל המולד שלו.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="text-blue-500 font-bold text-lg">03</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">אינטראקציית גן-סביבה מולקולרית (Caspi et al., 2003)</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        מחקר אורך פורץ דרך הראה כי הקשר בין התעללות בילדות להתנהגות אנטי-חברתית בבגרות ממותן על ידי הגן המייצר את האנזים <strong>MAOA</strong>. הפרשה גבוהה של האנזים מהווה <strong>גורם מגן</strong> המפחית משמעותית את נזקי ההתעללות, בעוד שהפרשה נמוכה מעלה את הסיכון להתנהגות אנטיסוציאלית.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Research Designs Table -->
+                        <div class="border border-slate-100 rounded-2xl overflow-hidden">
+                            <div class="bg-blue-50 px-4 py-3 border-b border-slate-100">
+                                <h4 class="font-bold text-blue-900 text-sm">השוואת מערכי מחקר התפתחותיים</h4>
+                            </div>
+                            <div class="divide-y divide-slate-100 text-xs">
+                                <div class="p-4 grid grid-cols-3 gap-4">
+                                    <span class="font-bold text-slate-700">מערך מחקר</span>
+                                    <span class="font-bold text-emerald-700">יתרונות מרכזיים</span>
+                                    <span class="font-bold text-rose-700">חסרונות ואתגרים</span>
+                                </div>
+                                <div class="p-4 grid grid-cols-3 gap-4 hover:bg-slate-50 transition-all">
+                                    <span class="font-semibold text-slate-800">מחקרי אורך (Longitudinal)</span>
+                                    <span class="text-slate-600">עונה על השאלה "מה מוליך למה", מאפשר זיהוי "אפקט רדום" (Sleeper effects) ומודד יציבות אישית לאורך זמן.</span>
+                                    <span class="text-slate-600">יקר מאוד, אובדן נבדקים (נשירה דיפרנציאלית), אפקט אימון (Testing effect), והכלים המדעיים עשויים להתיישן.</span>
+                                </div>
+                                <div class="p-4 grid grid-cols-3 gap-4 hover:bg-slate-50 transition-all">
+                                    <span class="font-semibold text-slate-800">מחקרי רוחב (Cross-Sectional)</span>
+                                    <span class="text-slate-600">מהיר, פשוט, חסכוני ומצוין לזיהוי הבדלים נורמטיביים כלליים בין קבוצות גיל.</span>
+                                    <span class="text-slate-600">לא מראה המשכיות אישית, לא מנבא נתיב התפתחותי, מערבב בין הבדלי גיל להבדלי שנתון היסטורי (Confounded).</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 3: THEORIES -->
+                    <article id="sec-theories" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 3</span>
+                            <h2 class="text-2xl font-bold text-slate-900">תיאוריות התפתחותיות מרכזיות</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Bandura & Learning -->
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="font-bold text-slate-800 mb-2 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    למידה חברתית - בנדורה
+                                </h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    מדגישה את תפקיד ההתנסות והסביבה בעיצוב ההתנהגות. הלמידה אינה מבוססת רק על חיזוקים ועונשים ישירים (ביהביוריזם קלאסי), אלא בעיקר על <strong>חיקוי דגמים (Modeling)</strong> ותצפית על התנהגות הזולת ותוצאותיה.
+                                </p>
+                            </div>
+
+                            <!-- Piaget -->
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="font-bold text-slate-800 mb-2 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    התפתחות קוגניטיבית - פיאז'ה
+                                </h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    ההתפתחות היא שינוי נורמטיבי איכותי במבני החשיבה של הילד ככל שהוא גדל. המעבר הוא מחשיבה סנסורית-מוטורית לחשיבה ייצוגית ומופשטת יותר, תוך התמודדות עם תפיסה אגוצנטרית בילדות המוקדמת.
+                                </p>
+                            </div>
+
+                            <!-- Freud -->
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="font-bold text-slate-800 mb-2 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    תיאוריה פסיכואנליטית - פרויד
+                                </h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    התפתחות פסיכו-סקסואלית המונעת מדחפים מולדים (האיד) המתועלים לאזורים ארוגניים שונים במהלך החיים: אוראלי, אנאלי, פאלי, חביון וגניטאלי. פתרון לא מוצלח של שלב מוביל ל<strong>קיבעון (Fixation)</strong>.
+                                </p>
+                            </div>
+
+                            <!-- Bowlby & Adaptation -->
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="font-bold text-slate-800 mb-2 text-sm flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                    תיאוריית ההסתגלות של בולבי
+                                </h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    מבוססת על הגישה האבולוציונית-אתולוגית. לתינוקות נטייה מולדת להתנהג בדרכים המעודדות קרבה ומגע עם המטפל לצורך הישרדות, דבר המגבש את <strong>מודל הפעולה הפנימי (Internal Working Model)</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Bronfenbrenner Highlight -->
+                        <div class="mt-6 bg-indigo-50/50 rounded-2xl p-5 border border-indigo-100">
+                            <h4 class="font-bold text-indigo-900 mb-2 text-sm">המודל האקולוגי של ברונפנברנר (Urie Bronfenbrenner)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                מודל טבעתי המציג את ההקשרים השונים המשפיעים על הילד מהקרוב ביותר ועד הרחב ביותר. כל מעגל משפיע ומושפע באופן הדדי.
+                            </p>
+                            <button onclick="switchTab('tools'); setTimeout(()=>scrollToSection('tool-bronfen'), 100)" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition-all">
+                                למעבר למסך המחשה אינטרקטיבי של המעגלים 🔍
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 4: RESILIENCE & RISK -->
+                    <article id="sec-resilience" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 4</span>
+                            <h2 class="text-2xl font-bold text-slate-900">גורמי סיכון, מגן, חוסן והסביבה הדינמית</h2>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            התפתחות אינה נתיב ליניארי קבוע. היא מהווה מאזן כוחות דינמי בין גורמי סיכון (המעלים סבירות לפגיעה) לבין גורמי מגן (המעניקים חוסן וממתנים סיכונים).
+                        </p>
+
+                        <!-- Orchid vs Dandelion -->
+                        <div class="bg-gradient-to-l from-purple-50 to-white rounded-2xl p-5 border border-purple-100 mb-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-2xl">🌱</span>
+                                <h3 class="font-bold text-purple-900">מודל הרגישות הדיפרנציאלית - השערת הסחלב מול שן הארי (Jay Belsky)</h3>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                בניגוד למודל המסורתי (רגישות-דחק) הטוען כי גנים מסוימים פשוט הופכים אנשים לפגיעים יותר למצבי לחץ, בלסקי הראה שישנם ילדים בעלי <strong>רגישות ביולוגית גבוהה להקשר (Biological Sensitivity to Context)</strong>:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-xl border border-purple-100">
+                                    <strong class="text-purple-800 text-xs block mb-1">🌷 ילד סחלב (Orchid Child)</strong>
+                                    <p class="text-[11px] text-slate-600 leading-relaxed">
+                                        רגיש ביותר לסביבתו. בסביבה עוינת, דלת גירויים או אלימה - הוא ייפגע קשות ויסבול מקשיים משמעותיים. אך בסביבה מטפחת, אוהבת ומותאמת אישית - הוא ישגשג בצורה יוצאת דופן וייפתח ביצועים מדהימים (אפילו יותר מילדי שן הארי).
+                                    </p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-purple-100">
+                                    <strong class="text-purple-800 text-xs block mb-1">🌾 ילד שן הארי (Dandelion Child)</strong>
+                                    <p class="text-[11px] text-slate-600 leading-relaxed">
+                                        עמיד וחסין יחסית. מסוגל לגדול ולהתפתח בצורה תקינה וממוצעת כמעט בכל סביבה - גם על מדרכות, בקירות סדוקים וללא השקיה מרובה. יחד עם זאת, הוא אינו מפיק רווח עצום מסביבה מותאמת באופן אישי.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sameroff Transactional Model -->
+                        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2">המודל העסקאותי (Transactional Model - Sameroff & Chandler, 1975)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                ההתפתחות אינה פשוט "ילד ← סביבה" או "סביבה ← ילד", אלא <strong>תהליך הדדי מתמשך של שינוי לאורך זמן</strong>. טמפרמנט קשה של תינוק גורם להורה לחוש תסכול וליצור הורות פחות רגישה וחודרנית, מה שמגביר את חרדת הילד, שבתורו מביא לנסיגה רגשית נוספת של ההורה. התערבות יעילה בכל שלב בנתיב זה יכולה לקטוע את מעגל הקסמים השלילי ולפתוח מסלול חדש ובריא.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 5: PREGNANCY, BIRTH & PREMATURITY -->
+                    <article id="sec-pregnancy" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-rose-100 text-rose-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 5</span>
+                            <h2 class="text-2xl font-bold text-slate-900">היריון, לידה ופגות (ההקשר הקדם-לידתי)</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="p-4 rounded-xl bg-slate-50 text-xs">
+                                <strong class="text-slate-800 block mb-1">1. תקופת הביצית (Germinal)</strong>
+                                <span class="text-slate-500 block mb-2">שבוע 1-2</span>
+                                אשכול תאים עצמאי (בלסטוציסט) המשתרש בדופן הרחם. התאים מתחלקים לגוש פנימי (ייעשה העובר) ולטרופובלסט (ייעשה מערכת התמיכה).
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 text-xs">
+                                <strong class="text-slate-800 block mb-1">2. תקופת העובר (Embryonic)</strong>
+                                <span class="text-slate-500 block mb-2">שבוע 3-8</span>
+                                תקופה קריטית של התמיינות שלוש שכבות התאים: אקטודרמה (מערכת עצבים ועור), מזודרמה (שרירים ושלד), ואנדודרמה (איברים פנימיים). כל חלקי הגוף העיקריים מתעצבים.
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 text-xs">
+                                <strong class="text-slate-800 block mb-1">3. תקופת הוולד (Fetal)</strong>
+                                <span class="text-slate-500 block mb-2">שבוע 9 עד הלידה</span>
+                                הבשלה וצמיחה מואצת. העובר מתחיל לנוע, לפתח מחזורי שינה, להגיב לצלילים (משבוע 28 - סיכוי הישרדות משמעותיים יותר).
+                            </div>
+                        </div>
+
+                        <!-- Teratogens & Risk -->
+                        <div class="bg-rose-50/50 rounded-2xl p-5 border border-rose-100 mb-6">
+                            <h4 class="font-bold text-rose-950 text-sm mb-2">טרטוגנים (Teratogens)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                גורמים סביבתיים (סמים, אלכוהול, מחלות האם, סטרס קיצוני) העלולים לחדור את השלייה ולחולל מומים קבועים או כשל התפתחותי משמעותי.
+                            </p>
+                            <ul class="text-[11px] text-slate-600 space-y-1.5 list-disc list-inside">
+                                <li><strong>אלכוהול:</strong> עלול לגרום לתסמונת האלכוהול העוברית (FAS), פגיעה חמורה במבנה המוח ובמבנה הפנים, והפרעות התנהגות קשות.</li>
+                                <li><strong>עישון:</strong> פוגע בכלי הדם, מוביל למשקל לידה נמוך ולעלייה בשכיחות מוות בעריסה.</li>
+                                <li><strong>סמים:</strong> גורמים לתינוק להיוולד עם "קריז" (תסמונת גמילה קשה), ומגבירים נטייה מולדת להתמכרות עתידית.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Premature babies / Pajim -->
+                        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm mb-2">פגות (לידה לפני שבוע 37)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                לידת פג מהווה אירוע טראומטי מטלטל הן לתינוק והן להוריו. מבחינה קוגניטיבית ופסיכולוגית, הפג חווה רמות סטרס גבוהות עקב המכשור הרפואי וקושי בוויסות החושים. דניאל סטרן מתאר את משבר לידת הפג כמנפץ את פנטזיית "התינוק האידיאלי" של האם ומקשה על תחילת הקישור הראשוני.
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 space-y-3">
+                                <h5 class="text-xs font-bold text-slate-700">שיקום וקידום התפתחות בפגייה:</h5>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    • <strong>שיטת הקנגורו (Skin to Skin):</strong> מגע ישיר של עור לעור המגביר את הורמון האוקסיטוצין ומוריד את רמת הקורטיזול (הורמון הסטרס).
+                                    <br>• <strong>חישוב גיל מתוקן (Adjusted Age):</strong> על מנת להעריך נכונה את התקדמותו המוטורית והקוגניטיבית של הפג, יש להפחית מגילו הכרונולוגי את מספר השבועות שהיה אמור לשהות ברחם (שימוש בגיל מתוקן מומלץ עד גיל שנתיים).
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SECTION 6: ATTACHMENT -->
+                    <article id="sec-attachment" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full">שיעור 6</span>
+                            <h2 class="text-2xl font-bold text-slate-900">אינטראקציות מוקדמות ותיאוריית ההתקשרות</h2>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed mb-6">
+                            התפתחות רגשית של הילד מותנית באופן מוחלט ביצירת מערכת יחסים בטוחה עם דמות משמעותית קבועה. כפי שהוכיחו מחקריהם של <strong>רנה ספיץ</strong> (על תופעת "כשל בשגשוג" ודיכאון אנקליטי בבתי יתומים) ו<strong>הארלו</strong> (העדפת חום ומגע על פני מזון אצל קופים).
+                        </p>
+
+                        <!-- Strange Situation -->
+                        <div class="bg-amber-50/50 rounded-2xl p-5 border border-amber-100 mb-6">
+                            <h3 class="font-bold text-amber-950 text-sm mb-2">סיטואציית הזר (Strange Situation Procedure - Ainsworth)</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                                מערך תצפית סטנדרטי בגיל 12-18 חודשים (תקופה המאופיינת בחרדת פרידה ובחרדת זרים). הבדיקה מורכבת מ-8 אפיזודות המעמידות את הילד במצבי לחץ עולים, כאשר <strong>המשתנה הקריטי ביותר לקביעת סגנון ההתקשרות הוא התנהגות התינוק ברגעי האיחוד (Reunion)</strong>.
+                            </p>
+                            <button onclick="switchTab('tools'); setTimeout(()=>scrollToSection('tool-strange'), 100)" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition-all">
+                                לחקר 8 האפיזודות של סיטואציית הזר 🧪
+                            </button>
+                        </div>
+
+                        <!-- Attachment Styles Matrix -->
+                        <h3 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-3">ארבעת סגנונות ההתקשרות</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <strong class="text-emerald-800 text-xs block mb-1">🟢 התקשרות בטוחה (Secure - כ-60%-70%)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    התינוק משתמש באם כבסיס בטוח לחקירה. מביע קושי מסוים בפרידה, וכאשר היא חוזרת - הוא יוזם מגע, נרגע במהירות וחוזר לחקור. נובע מהורות רגישה, מגיבה ועקבית ("השילוש הקדוש": לזהות סיגנל, לפרש נכון, להגיב מותאם).
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <strong class="text-amber-800 text-xs block mb-1">🟡 התקשרות נמנעת (Insecure-Avoidant - כ-20%-25%)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    התינוק כמעט ואינו מראה סימני מצוקה בפרידה, ומתעלם או נמנע באופן פעיל מהאם באיחוד. במדידות פיזיולוגיות נמצא כי רמת הקורטיזול (הסטרס) שלו גבוהה ביותר, אך הוא מפעיל "וויסות יתר" כדי למנוע דחייה נוספת מצד אם חסרת רגישות או חודרנית.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <strong class="text-indigo-800 text-xs block mb-1">🔵 התקשרות אמביוולנטית/מתנגדת (Insecure-Resistant - כ-10%-15%)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    מרוכז כל כולו באם ואינו חוקר את החדר. נלחץ קשות בפרידה, וכשמתרחש איחוד הוא רוצה קרבה אך בו-בזמן מתנגד, כועס ואינו מצליח להירגע. נובע בדרך כלל מהורות לא עקבית ומעוררת אשמה.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                <strong class="text-rose-800 text-xs block mb-1">🔴 התקשרות בלתי מאורגנת (Disorganized - Mary Main - כ-10%-15%)</strong>
+                                <p class="text-[11px] text-slate-600 leading-relaxed">
+                                    התמוטטות מוחלטת של אסטרטגיות הוויסות. הילד מראה קפיאה, התקרבות לאם עם פנים מוסטות הצידה ותנועות לא עקביות. נובע מחוויית פחד ("ההורה כמקור הפחד ומקור ההגנה בעת ובעונה אחת"), המוליכה לעיתים לשימוש במנגנוני דיסאסוציאציה (נתק).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Attachment Stages -->
+                        <h3 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-3">שלבי התפתחות ההתקשרות (Bowlby)</h3>
+                        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 text-xs space-y-3">
+                            <p><strong>1. שלב טרום התקשרות (לידה עד 6 שבועות):</strong> איתותים לא סלקטיביים (חיוך אינסטינקטיבי, בכי). התינוק מקבל בברכה כל מבוגר המספק את צרכיו.</p>
+                            <p><strong>2. שלב התגבשות ההתקשרות (6 שבועות עד 6-8 חודשים):</strong> הבחנה ברורה בין מוכרים לזרים. נטייה להגיב טוב יותר לדמות המטפלת המרכזית, אך עדיין ללא חרדת פרידה ברורה.</p>
+                            <p><strong>3. שלב ההתקשרות הממוקדת (6-8 חודשים עד 18-24 חודשים):</strong> התקשרות מבוססת וממוקדת. הופעת <strong>חרדת זרים</strong> ו<strong>חרדת פרידה</strong> מובהקת. שימוש פעיל במטפל כבסיס בטוח וחוף מבטחים.</p>
+                            <p><strong>4. שותפות מתוקנת מטרה (Goal Corrected Partnership - מגיל שנתיים ומעלה):</strong> ירידה באגוצנטריות ופיתוח יכולת <strong>מנטליזציה</strong>. הילד מבין שלאמא יש רצונות משלה, ולומד לנהל משא ומתן ולהגיע להסכמות.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: INTERACTIVE TOOLS ==================== -->
+        <section id="tab-tools" class="tab-content hidden space-y-12">
+            
+            <!-- Tool 1: Preemies Adjusted Age Calculator -->
+            <div id="tool-preemie" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-rose-100 p-2 rounded-xl text-rose-600 text-lg">👶</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">מחשבון גיל מתוקן לפגים (Adjusted Age Calculator)</h2>
+                        <p class="text-xs text-slate-500">לפי הגדרות פסיכולוגיה התפתחותית קלינית (לשימוש עד גיל שנתיים)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Calculator Inputs -->
+                    <div class="space-y-4 bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">תאריך הלידה הכרונולוגי של הילד:</label>
+                            <input type="date" id="preemie-birthdate" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">שבוע ההיריון בעת הלידה (פגות מוגדרת פחות מ-37):</label>
+                            <select id="preemie-week" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                                <option value="40">40 (הריון מלא - אין פגות)</option>
+                                <option value="39">39</option>
+                                <option value="38">38</option>
+                                <option value="37">37</option>
+                                <option value="36">36 (פגות קלה)</option>
+                                <option value="35">35</option>
+                                <option value="34">34</option>
+                                <option value="33">33</option>
+                                <option value="32">32 (פגות בינונית)</option>
+                                <option value="31">31</option>
+                                <option value="30">30</option>
+                                <option value="29">29</option>
+                                <option value="28">28 (פגות קיצונית)</option>
+                                <option value="27">27</option>
+                                <option value="26">26</option>
+                                <option value="25">25</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                        <button onclick="calculatePreemieAge()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs py-3 rounded-xl shadow transition-all">
+                            חשב הבדלי גילאים 📊
+                        </button>
+                    </div>
+
+                    <!-- Calculator Results -->
+                    <div class="flex flex-col justify-center bg-rose-50/30 border border-rose-100 rounded-2xl p-5">
+                        <h4 class="text-xs font-bold text-rose-900 mb-3 uppercase tracking-wider">נתוני התפתחות מוערכים:</h4>
+                        <div class="space-y-4" id="preemie-results-placeholder">
+                            <p class="text-xs text-slate-500 text-center py-8">הזן נתונים ולחץ על כפתור החישוב כדי לצפות בתוצאות.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Orchid vs Dandelion Environment Simulator -->
+            <div id="tool-orchid" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-purple-100 p-2 rounded-xl text-purple-600 text-lg">🌱</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">סימולטור רגישות דיפרנציאלית (בלסקי, Boyce & Ellis)</h2>
+                        <p class="text-xs text-slate-500">כיצד איכות הסביבה משפיעה על "סחלבים" מול "שן הארי"?</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <!-- Controls -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 md:col-span-1 space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-2">
+                                טיב הסביבה ההתפתחותית: <span id="env-val-text" class="text-purple-700 font-extrabold">בינונית (נורמטיבית)</span>
+                            </label>
+                            <input type="range" id="env-slider" min="1" max="5" value="3" oninput="updateOrchidSimulator()" class="w-full accent-purple-600">
+                            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                                <span>הרסנית/מתעללת</span>
+                                <span>עשירה ומטפחת</span>
+                            </div>
+                        </div>
+
+                        <div class="text-[11px] text-slate-500 space-y-2">
+                            <p>💡 <strong>סביבה הרסנית (1-2):</strong> חשיפה לסטרס מרעיל, חוסר רגישות הורית חמור.</p>
+                            <p>💡 <strong>סביבה בינונית (3):</strong> נורמטיבית, גבולות קיימים, תמיכה בסיסית.</p>
+                            <p>💡 <strong>סביבה מעולה (4-5):</strong> הורות רגישה ומותאמת, גירויים קוגניטיביים עשירים.</p>
+                        </div>
+                    </div>
+
+                    <!-- Visual Comparison Graphics -->
+                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Orchid Card -->
+                        <div class="bg-purple-50/50 rounded-2xl p-5 border border-purple-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-purple-800">🌷 ילד סחלב (Orchid)</span>
+                                    <span id="orchid-score-badge" class="bg-purple-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">ציון: 50</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                                    <div id="orchid-bar" class="bg-purple-600 h-full rounded-full transition-all duration-500" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <p id="orchid-sim-text" class="text-xs text-slate-600 leading-relaxed mt-4 italic">
+                                בסביבה בינונית, הסחלב גדל בצורה סבירה אך לא מנצל את מרבית הפוטנציאל הרדום שלו.
+                            </p>
+                        </div>
+
+                        <!-- Dandelion Card -->
+                        <div class="bg-amber-50/30 rounded-2xl p-5 border border-amber-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-xs font-bold text-amber-800">🌾 ילד שן הארי (Dandelion)</span>
+                                    <span id="dandelion-score-badge" class="bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">ציון: 55</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                                    <div id="dandelion-bar" class="bg-amber-500 h-full rounded-full transition-all duration-500" style="width: 55%"></div>
+                                </div>
+                            </div>
+                            <p id="dandelion-sim-text" class="text-xs text-slate-600 leading-relaxed mt-4 italic">
+                                שן הארי מתמודד היטב ומצליח לשמור על יציבות והתפתחות ממוצעת.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Interactive Bronfenbrenner Circles -->
+            <div id="tool-bronfen" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-indigo-100 p-2 rounded-xl text-indigo-600 text-lg">🪐</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">מדריך אינטראקטיבי למעגלי ברונפנברנר</h2>
+                        <p class="text-xs text-slate-500">לחץ על כל אחד מהמעגלים במערכת כדי לחקור את ההקשרים והשפעתם האקולוגית</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+                    <!-- Concentric Circles Representation (Interactive List) -->
+                    <div class="lg:col-span-5 flex flex-col gap-2">
+                        <button onclick="selectBronfen('micro')" id="btn-bf-micro" class="bronfen-selector text-right p-3.5 rounded-xl border-2 border-indigo-500 bg-indigo-50/50 text-indigo-900 font-bold text-xs transition-all shadow-xs flex justify-between items-center">
+                            <span>1. מערכת המיקרו (Microsystem)</span>
+                            <span class="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full">הקשר ישיר</span>
+                        </button>
+                        <button onclick="selectBronfen('meso')" id="btn-bf-meso" class="bronfen-selector text-right p-3.5 rounded-xl border-2 border-slate-100 hover:border-indigo-300 text-slate-700 font-bold text-xs transition-all flex justify-between items-center">
+                            <span>2. מערכת המסו (Mesosystem)</span>
+                            <span class="text-[10px] bg-slate-300 text-slate-700 px-2 py-0.5 rounded-full">קשרי גומלין</span>
+                        </button>
+                        <button onclick="selectBronfen('exo')" id="btn-bf-exo" class="bronfen-selector text-right p-3.5 rounded-xl border-2 border-slate-100 hover:border-indigo-300 text-slate-700 font-bold text-xs transition-all flex justify-between items-center">
+                            <span>3. מערכת האקסו (Exosystem)</span>
+                            <span class="text-[10px] bg-slate-300 text-slate-700 px-2 py-0.5 rounded-full">סביבה עקיפה</span>
+                        </button>
+                        <button onclick="selectBronfen('macro')" id="btn-bf-macro" class="bronfen-selector text-right p-3.5 rounded-xl border-2 border-slate-100 hover:border-indigo-300 text-slate-700 font-bold text-xs transition-all flex justify-between items-center">
+                            <span>4. מערכת המאקרו (Macrosystem)</span>
+                            <span class="text-[10px] bg-slate-300 text-slate-700 px-2 py-0.5 rounded-full">תרבות ומדיניות</span>
+                        </button>
+                        <button onclick="selectBronfen('chrono')" id="btn-bf-chrono" class="bronfen-selector text-right p-3.5 rounded-xl border-2 border-slate-100 hover:border-indigo-300 text-slate-700 font-bold text-xs transition-all flex justify-between items-center">
+                            <span>5. מערכת הכרונו (Chronosystem)</span>
+                            <span class="text-[10px] bg-slate-300 text-slate-700 px-2 py-0.5 rounded-full">ציר הזמן והיסטוריה</span>
+                        </button>
+                    </div>
+
+                    <!-- Selected Circle Details -->
+                    <div class="lg:col-span-7 bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col justify-between">
+                        <div id="bronfen-content">
+                            <h4 class="font-bold text-indigo-900 text-sm mb-2" id="bf-title">מערכת המיקרו (Microsystem)</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed" id="bf-desc">
+                                הסביבה המיידית איתה הילד בא במגע ישיר ופרוקסימלי (פנים אל פנים). בזירה זו מתרחשים התהליכים הקריטיים והאינטנסיביים ביותר של ההתפתחות.
+                            </p>
+                            <div class="mt-4 bg-white p-3 rounded-xl border border-slate-200/60">
+                                <span class="font-bold text-xs text-slate-700 block mb-1">דוגמאות מפתח:</span>
+                                <span class="text-xs text-slate-600 block" id="bf-examples">התא המשפחתי המצומצם, מסגרת מעון היום (גיל 0-3), חברים בגן, חדר הרופא המטפל.</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-200/50 flex justify-between items-center text-[11px] text-slate-500">
+                            <span>מדד ברונפנברנר (1979, 1989)</span>
+                            <span class="text-indigo-600 font-bold">השפעה דו-כיוונית (בידוד מול אינטראקציה)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Strange Situation Procedure Visualizer -->
+            <div id="tool-strange" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 scroll-mt-24">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-amber-100 p-2 rounded-xl text-amber-600 text-lg">🧪</span>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">אפיזודות "סיטואציית הזר" של מרי איינסוורת'</h2>
+                        <p class="text-xs text-slate-500">מחקר אמפירי מבוקר של 7 המעברים בין פרידה ואיחוד (משך כל אפיזודה: 3 דקות)</p>
+                    </div>
+                </div>
+
+                <!-- Timeline / Steps Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-6">
+                    <button onclick="selectEpisode(1)" id="ep-btn-1" class="ep-btn text-center p-2.5 rounded-xl border-2 border-amber-500 bg-amber-50 text-amber-950 text-xs font-bold transition-all">אפיזודה 1</button>
+                    <button onclick="selectEpisode(2)" id="ep-btn-2" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 2</button>
+                    <button onclick="selectEpisode(3)" id="ep-btn-3" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 3</button>
+                    <button onclick="selectEpisode(4)" id="ep-btn-4" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 4</button>
+                    <button onclick="selectEpisode(5)" id="ep-btn-5" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 5</button>
+                    <button onclick="selectEpisode(6)" id="ep-btn-6" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 6</button>
+                    <button onclick="selectEpisode(7)" id="ep-btn-7" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 7</button>
+                    <button onclick="selectEpisode(8)" id="ep-btn-8" class="ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all">אפיזודה 8</button>
+                </div>
+
+                <!-- Display Episode Area -->
+                <div class="bg-amber-50/20 border border-amber-100 rounded-2xl p-5 md:p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 pb-4 border-b border-amber-100">
+                        <div>
+                            <h4 id="ep-title" class="font-bold text-slate-900 text-sm">אפיזודה 1: היכרות עם החדר</h4>
+                            <p id="ep-actors" class="text-xs text-amber-800 font-medium">נוכחים בחדר: אם ותינוק</p>
+                        </div>
+                        <span class="text-xs font-bold text-amber-700 bg-amber-100/60 px-3 py-1 rounded-full">משך זמן: 3 דקות (או פחות בסטרס קיצוני)</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <strong class="text-xs text-slate-800 block mb-1">פעולת האורגניזם ההתנהגותי:</strong>
+                            <p id="ep-desc" class="text-xs text-slate-600 leading-relaxed">
+                                האם מלווה את התינוק לחדר המעבדה שמכיל צעצועים רבים. האם מתיישבת בכיסא ומגיבה לתינוק רק במידה והוא יוזם איתה אינטראקציה ישירה.
+                            </p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-amber-100/60">
+                            <strong class="text-xs text-amber-900 block mb-1">מה נמדד בשלב זה בפועל?</strong>
+                            <p id="ep-measure" class="text-xs text-slate-600 leading-relaxed">
+                                נמדדת יכולת הילד להשתמש באם כ"בסיס בטוח" (Secure Base) לחקירה וסקרנות של הצעצועים החדשים וסביבת החדר בעת שקט ומנוחה.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ==================== TAB 3: FLASHCARDS ==================== -->
+        <section id="tab-flashcards" class="tab-content hidden space-y-6">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <h2 class="text-2xl font-black text-slate-900">כרטיסיות שינון מונחים מהירים</h2>
+                <p class="text-xs text-slate-500 mt-2">לחצו על כרטיסייה על מנת להפוך אותה ולצפות בהסבר הפסיכולוגי המדעי של המושג.</p>
+            </div>
+
+            <!-- Cards Container -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-teal-500">
+                            <span class="text-xs font-bold text-teal-600 uppercase">מושג 1</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">מודל פעולה פנימי<br>(Internal Working Model)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                ייצוג קוגניטיבי-רגשי שהילד בונה בשנת חייו הראשונה הכולל ציפיות קבועות לגבי זמינות ההורה וערך העצמי. פועל כמסגרת לפרשנות ויחסים עתידיים לאורך כל מעגל החיים.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-blue-500">
+                            <span class="text-xs font-bold text-blue-600 uppercase">מושג 2</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">דיכאון אנקליטי<br>(Anaclitic Depression)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                מונח שטבע רנה ספיץ. דיכאון קשה הנגרם אצל תינוקות עקב פרידה ממושכת מדמות קבועה וחוסר בקשר אנושי אישי. מוליך לירידה בתיאבון, כשל בשגשוג, נסיגה קוגניטיבית ואף מוות.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-indigo-500">
+                            <span class="text-xs font-bold text-indigo-600 uppercase">מושג 3</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">ויסות הדדי<br>(Co-regulation)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                היכולת של התינוק וההורה להשפיע זה על הרגש של זה ולהיפך. התינוק אינו מסוגל לווסת את עצמו באופן עצמאי לחלוטין בראשית חייו, והוא תלוי לחלוטין ברגישות המטפל להרגעתו.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-purple-500">
+                            <span class="text-xs font-bold text-purple-600 uppercase">מושג 4</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">מחזור MATCH-MISMATCH</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                תיאוריית הדיאלוג ההתפתחותי מדגישה שאינטראקציה טובה אינה מחייבת סנכרון תמידי. המחזוריות של הפרה (Mismatch) ותיקון (Rematch) מהווה התנסות קריטית לתינוק המפתחת אצלו גמישות רגשית ואמון.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-amber-500">
+                            <span class="text-xs font-bold text-amber-600 uppercase">מושג 5</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">בדיקת PKU</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                פנילקטונוריה. ליקוי מטבולי גנטי שבו הגוף לא מעכל חלבונים. דוגמה מושלמת לשילוב תורשה וסביבה: התערבות סביבתית מיידית של שינוי תזונתי בגיל 0-5 מונעת לחלוטין את הפיגור הקוגניטיבי החמור שהיה מתרחש באופן טבעי.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-rose-500">
+                            <span class="text-xs font-bold text-rose-600 uppercase">מושג 6</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">מבחן אפגר (Apgar Score)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                מבחן הערכה ראשוני ומיידי המבוצע ברגע הלידה (בדקה הראשונה ובדקה החמישית) הבוחן חמישה סימנים פיזיולוגיים: דופק, נשימה, רפלקסים, טונוס שרירים וצבע עור. הציון המרבי הוא 10.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-emerald-500">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">מושג 7</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">עכבה התנהגותית<br>(Behavioral Inhibition)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                מונח מחקרי של ג'רום קגן (Jerome Kagan). ביישנות מאוד גדולה והימנעות מגירויים חדשים אצל פעוטות. מחקרים מוכיחים כי יש לה בסיס ביולוגי חזק, אך אינטראקציה סביבתית רגישה יכולה למתן אותה ולמנוע חרדה חברתית עתידית.
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="card-perspective h-64 cursor-pointer" onclick="flipCard(this)">
+                    <div class="card-inner w-full h-full relative rounded-2xl shadow-sm border border-slate-150">
+                        <!-- Front -->
+                        <div class="card-front absolute inset-0 bg-white rounded-2xl p-6 flex flex-col justify-between border-b-4 border-pink-500">
+                            <span class="text-xs font-bold text-pink-600 uppercase">מושג 8</span>
+                            <h3 class="text-lg font-bold text-slate-800 text-center my-auto">אפקט רדום<br>(Sleeper Effect)</h3>
+                            <span class="text-[10px] text-slate-400 text-left">לחץ לחשיפת התשובה ➔</span>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back absolute inset-0 bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between">
+                            <p class="text-xs text-slate-200 leading-relaxed my-auto">
+                                תוצאה התפתחותית או פסיכולוגית של אירוע מוקדם בילדות, שאינה נראית לעין באופן מיידי אלא באה לידי ביטוי רק בשלבי התפתחות מאוחרים יותר (למשל, קושי במערכות יחסים בבגרות בעקבות טראומה בינקות).
+                            </p>
+                            <span class="text-[10px] text-slate-400 text-right">לחץ לחזרה ➔</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: COMPREHENSIVE QUIZ ==================== -->
+        <section id="tab-quiz" class="tab-content hidden">
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">בוחן אינטראקטיבי מסכם</h2>
+                        <p class="text-xs text-slate-500">בחן את הבנתך ב-10 שאלות ברמת מבחן המכסות את חומר הקורס כולו</p>
+                    </div>
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1.5 rounded-full" id="quiz-progress">שאלה 1 מתוך 10</span>
+                </div>
+
+                <!-- Single Question Container -->
+                <div id="quiz-container">
+                    <h3 class="font-bold text-slate-800 text-sm sm:text-base mb-4 leading-relaxed" id="quiz-question">
+                        טוען השאלה...
+                    </h3>
+                    
+                    <div class="space-y-2" id="quiz-options">
+                        <!-- Options generated by JS -->
+                    </div>
+
+                    <!-- Action and Explanation Box -->
+                    <div class="mt-6 pt-4 border-t border-slate-150 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div id="explanation-box" class="hidden text-xs bg-slate-50 border border-slate-200 rounded-xl p-4 text-slate-600 leading-relaxed w-full">
+                            <!-- Feedback and explanation text -->
+                        </div>
+                        <button onclick="submitAnswer()" id="btn-submit-answer" class="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition-all">
+                            אישור תשובה
+                        </button>
+                        <button onclick="nextQuestion()" id="btn-next-question" class="hidden w-full sm:w-auto bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition-all">
+                            השאלה הבאה ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Score Board (Shown at the End) -->
+                <div id="quiz-scoreboard" class="hidden text-center py-8 space-y-6">
+                    <div class="inline-block bg-teal-50 p-6 rounded-full">
+                        <span class="text-5xl">🏆</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-slate-900">כל הכבוד! סיימת את הבוחן</h3>
+                        <p class="text-sm text-slate-500 mt-1">צברת <span id="final-score" class="text-teal-600 font-bold">0</span> מתוך 100 נקודות אפשריות.</p>
+                    </div>
+                    <button onclick="restartQuiz()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-md transition-all">
+                        נסה שוב מהתחלה 🔄
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p>נבנה עבור הכנה למבחן בפסיכולוגיה התפתחותית • תשפ"ו • 2026</p>
+            <p class="text-[10px] text-slate-600">כל התכנים והמודלים מבוססים על הנחות היסוד ההתפתחותיות של שונקוף ופיליפס ומחקרי קורטיזול וסטרס קליני.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Dialog Modal (Replaces Browser alert) -->
+    <div id="custom-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-slate-100 text-center space-y-4">
+            <div class="text-4xl" id="modal-icon">⚠️</div>
+            <h4 class="font-bold text-slate-900" id="modal-title">שים לב</h4>
+            <p class="text-xs text-slate-600 leading-relaxed" id="modal-message">הודעת מערכת</p>
+            <button onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-2.5 rounded-xl transition-all">
+                הבנתי
+            </button>
+        </div>
+    </div>
+
+    <!-- Script Section -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            // Show selected
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) {
+                activeTab.classList.remove('hidden');
+                activeTab.classList.add('block');
+            }
+
+            // Update Navigation state
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all";
+            });
+            document.getElementById(`btn-tab-${tabId}`).className = "nav-btn bg-teal-500 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all shadow";
+        }
+
+        // Scroll to element smooth
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Custom Modal Alert Box
+        function showAlert(title, message, icon = '⚠️') {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('modal-icon').innerText = icon;
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        // Flashcards Flip Interaction
+        function flipCard(cardEl) {
+            const inner = cardEl.querySelector('.card-inner');
+            inner.classList.toggle('card-flipped');
+        }
+
+        // ------------------ INTERACTIVE COMPONENT 1: PREEMIES CALCULATOR ------------------
+        function calculatePreemieAge() {
+            const birthdateInput = document.getElementById('preemie-birthdate').value;
+            const gestationalWeek = parseInt(document.getElementById('preemie-week').value);
+
+            if (!birthdateInput) {
+                showAlert('שגיאת קלט', 'נא להזין את תאריך הלידה הכרונולוגי של הילד על מנת לחשב.', '📅');
+                return;
+            }
+
+            const birthDate = new Date(birthdateInput);
+            const today = new Date();
+            
+            // Calculate chronological age in days and weeks
+            const diffTime = Math.abs(today - birthDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            const chronoMonths = (today.getFullYear() - birthDate.getFullYear()) * 12 + today.getMonth() - birthDate.getMonth();
+            const chronoDaysTotal = Math.floor(diffTime / (1000 * 3600 * 24));
+            const chronoWeeks = Math.floor(chronoDaysTotal / 7);
+
+            // Calculation of adjusted age
+            // Standard full term is 40 weeks.
+            const weeksPremature = 40 - gestationalWeek;
+            const daysPremature = weeksPremature * 7;
+            const adjustedDaysTotal = chronoDaysTotal - daysPremature;
+
+            const resultsContainer = document.getElementById('preemie-results-placeholder');
+            resultsContainer.innerHTML = ''; // Clear
+
+            if (adjustedDaysTotal < 0) {
+                resultsContainer.innerHTML = `
+                    <div class="bg-rose-100/50 p-4 rounded-xl border border-rose-200 text-center">
+                        <strong class="text-rose-900 block mb-1">התינוק טרם הגיע לתאריך הלידה המקורי המתוכנן שלו!</strong>
+                        <p class="text-xs text-rose-700 leading-relaxed">גילו המתוקן כרגע מוגדר שלילי. הוא עדיין נמצא בשבועות התפתחות עוברית מקבילה בתוך האינקובטור.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const adjWeeks = Math.floor(adjustedDaysTotal / 7);
+            const adjMonths = Math.floor(adjustedDaysTotal / 30.4);
+            const remainingAdjDays = Math.floor(adjustedDaysTotal % 30.4);
+
+            resultsContainer.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex justify-between border-b border-slate-100 pb-2">
+                        <span class="text-slate-500 text-xs">גיל כרונולוגי (מיום הלידה):</span>
+                        <strong class="text-slate-800 text-xs">${chronoMonths} חודשים (${chronoWeeks} שבועות)</strong>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-100 pb-2">
+                        <span class="text-slate-500 text-xs">חוסר זמן ברחם:</span>
+                        <strong class="text-rose-600 text-xs">${weeksPremature} שבועות (${daysPremature} ימים)</strong>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-150 pb-2 bg-rose-100/30 p-2 rounded-lg">
+                        <span class="text-rose-900 font-bold text-xs">גיל מתוקן (להערכה התפתחותית):</span>
+                        <strong class="text-rose-900 font-extrabold text-xs">${adjMonths} חודשים ו-${remainingAdjDays} ימים (${adjWeeks} שבועות)</strong>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-3 text-[11px] leading-relaxed mt-2 text-right">
+                        <strong>📌 עצה קלינית:</strong> בהערכת אבני דרך (זחילה, ישיבה, פינצטה מוטורית), עליך להשתמש בערך ה<strong>גיל המתוקן</strong> (${adjMonths} חודשים) ולא הכרונולוגי. המוח והגוף שלו משלימים את הפיגור הפיזיולוגי בשל הלידה המוקדמת.
+                    </div>
+                </div>
+            `;
+        }
+
+        // ------------------ INTERACTIVE COMPONENT 2: ORCHID VS DANDELION SIMULATOR ------------------
+        function updateOrchidSimulator() {
+            const envValue = parseInt(document.getElementById('env-slider').value);
+            const textEl = document.getElementById('env-val-text');
+            const orchidBar = document.getElementById('orchid-bar');
+            const dandelionBar = document.getElementById('dandelion-bar');
+            const orchidBadge = document.getElementById('orchid-score-badge');
+            const dandelionBadge = document.getElementById('dandelion-score-badge');
+            const orchidText = document.getElementById('orchid-sim-text');
+            const dandelionText = document.getElementById('dandelion-sim-text');
+
+            let envText = "בינונית (נורמטיבית)";
+            let orchidScore = 50;
+            let dandelionScore = 55;
+            let orchidDesc = "";
+            let dandelionDesc = "";
+
+            switch(envValue) {
+                case 1:
+                    envText = "הרסנית (הזנחה וסטרס קיצוני)";
+                    orchidScore = 15;
+                    dandelionScore = 40;
+                    orchidDesc = "מצוקה קשה. בהיעדר תנאים מותאמים, הסחלב חווה כשל פיזיולוגי ונוירולוגי משמעותי, הפרעות קורטיזול קשות ופסיכופתולוגיה.";
+                    dandelionDesc = "התפתחות נמוכה, אך יציבה יחסית. שן הארי מצליח לשרוד את תנאי החסך בצורה אדפטיבית ממוצעת.";
+                    break;
+                case 2:
+                    envText = "דלה (הורות לא עקבית)";
+                    orchidScore = 30;
+                    dandelionScore = 48;
+                    orchidDesc = "נסיגה רגשית. חוסר סנכרון תכוף יוצר אצל הסחלב עוררות יתר של סטרס וחסימה של חקירה קוגניטיבית.";
+                    dandelionDesc = "מתקדם בקצב כמעט רגיל. נתמך במנגנונים החיצוניים של משחק ודחף פנימי מולד לחקירה.";
+                    break;
+                case 3:
+                    envText = "בינונית (נורמטיבית)";
+                    orchidScore = 50;
+                    dandelionScore = 55;
+                    orchidDesc = "בסביבה בינונית, הסחלב גדל בצורה סבירה אך לא מנצל את מרבית הפוטנציאל הרדום שלו.";
+                    dandelionDesc = "שן הארי מתמודד היטב ומצליח לשמור על יציבות והתפתחות ממוצעת.";
+                    break;
+                case 4:
+                    envText = "טובה (תמיכה רגשית וגבולות)";
+                    orchidScore = 75;
+                    dandelionScore = 65;
+                    orchidDesc = "פריחה משמעותית! רגישותו לסביבה מאפשרת לו לקלוט במהירות את תבניות הוויסות העצמי והרגשי של ההורה.";
+                    dandelionDesc = "שיפור קל. שן הארי משתפר בזכות התנאים הטובים, אך בצורה פחות דרמטית.";
+                    break;
+                case 5:
+                    envText = "יוצאת דופן (הורות רגישה ומותאמת אישית)";
+                    orchidScore = 95;
+                    dandelionScore = 75;
+                    orchidDesc = "גאונות ושגשוג פנומנלי! הסחלב מתפתח מעל ומעבר לממוצע, מפתח רמות מנטליזציה יוצאות דופן וביטחון עצמי מוחלט.";
+                    dandelionDesc = "התפתחות מצוינת, אך מתונה ביחס לסחלב. שומר על ממוצע יציב וגבוה.";
+                    break;
+            }
+
+            textEl.innerText = envText;
+            orchidBar.style.width = orchidScore + "%";
+            dandelionBar.style.width = dandelionScore + "%";
+            orchidBadge.innerText = "ציון: " + orchidScore;
+            dandelionBadge.innerText = "ציון: " + dandelionScore;
+            orchidText.innerText = orchidDesc;
+            dandelionText.innerText = dandelionDesc;
+        }
+
+        // Initialize simulator first text
+        updateOrchidSimulator();
+
+        // ------------------ INTERACTIVE COMPONENT 3: BRONFENBRENNER CIRCLES ------------------
+        const bronfenData = {
+            micro: {
+                title: "מערכת המיקרו (Microsystem)",
+                desc: "הסביבה המיידית איתה הילד בא במגע ישיר ופרוקסימלי (פנים אל פנים). בזירה זו מתרחשים התהליכים הקריטיים והאינטנסיביים ביותר של ההתפתחות והאינטראקציה ההדדית.",
+                examples: "התא המשפחתי המצומצם, מסגרת מעון היום (גיל 0-3), חברים בגן, חדר הרופא המטפל."
+            },
+            meso: {
+                title: "מערכת המסו (Mesosystem)",
+                desc: "מורכבת מקשרי הגומלין והקשרים שבין המיקרו-סיסטמות השונות בחיי הילד. הילד אינו חווה את המערכות הללו בנפרד, אלא דרך נקודות המפגש ביניהן.",
+                examples: "הקשר והתיאום בין ההורים למטפלות במעון היום, איכות הדיאלוג והתקשורת בין המורה בבית הספר לבית הילד."
+            },
+            exo: {
+                title: "מערכת האקסו (Exosystem)",
+                desc: "סביבה חברתית וכלכלית שהילד אינו חלק פעיל או ישיר ממנה, אך החלטות ואירועים המתרחשים בה משפיעים באופן עקיף ודרמטי על רווחתו והתפתחותו.",
+                examples: "מקום העבודה של ההורים (שעות עבודה ארוכות, לחץ בעבודה), מרחבים קהילתיים, זמינות שירותי רפואה ובריאות באזור המגורים."
+            },
+            macro: {
+                title: "מערכת המאקרו (Macrosystem)",
+                desc: "המעגל התרבותי, האידאולוגי והחוקי הרחב ביותר המאפיין את החברה שבה הילד גדל. קובע את סגנון ההורות, החינוך והאקלים הציבורי הכללי.",
+                examples: "תקציבי מדינה המיועדים לחינוך לגיל הרך, חוקי חופשת לידה, אמונות דתיות ואידאולוגיות לגבי אלימות או חינוך אלטרנטיבי (כמו בית הספר הדמוקרטי סאמרהיל)."
+            },
+            chrono: {
+                title: "מערכת הכרונו (Chronosystem)",
+                desc: "ציר הזמן וההיסטוריה. שינויים ומעברים היסטוריים או זמניים המשפיעים על ההתפתחות לאורך דורות ושלבי חיים.",
+                examples: "חשיפה למצב מלחמה וחירום לאומי (כמו המציאות בישראל), טכנולוגיה מודרנית מואצת, מעבר לשיטת הלינה המשותפת בקיבוצים בעבר והשלכותיה."
+            }
+        };
+
+        function selectBronfen(key) {
+            // Remove active styles from all buttons
+            document.querySelectorAll('.bronfen-selector').forEach(btn => {
+                btn.className = "bronfen-selector text-right p-3.5 rounded-xl border-2 border-slate-100 hover:border-indigo-300 text-slate-700 font-bold text-xs transition-all flex justify-between items-center";
+                const badge = btn.querySelector('span:last-child');
+                if (badge) {
+                    badge.className = "text-[10px] bg-slate-300 text-slate-700 px-2 py-0.5 rounded-full";
+                }
+            });
+
+            // Set active style for selected
+            const activeBtn = document.getElementById(`btn-bf-${key}`);
+            if (activeBtn) {
+                activeBtn.className = "bronfen-selector text-right p-3.5 rounded-xl border-2 border-indigo-500 bg-indigo-50/50 text-indigo-900 font-bold text-xs transition-all shadow-xs flex justify-between items-center";
+                const badge = activeBtn.querySelector('span:last-child');
+                if (badge) {
+                    badge.className = "text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded-full";
+                }
+            }
+
+            // Update content details
+            const data = bronfenData[key];
+            document.getElementById('bf-title').innerText = data.title;
+            document.getElementById('bf-desc').innerText = data.desc;
+            document.getElementById('bf-examples').innerText = data.examples;
+        }
+
+        // ------------------ INTERACTIVE COMPONENT 4: STRANGE SITUATION EPISODES ------------------
+        const episodesData = {
+            1: {
+                title: "אפיזודה 1: היכרות עם חדר המעבדה",
+                actors: "אם, תינוק וחוקר (בהתחלה)",
+                desc: "האם מלווה את התינוק לחדר המעבדה שמכיל צעצועים רבים. האם מתיישבת בכיסא ומגיבה לתינוק רק במידה והוא יוזם איתה אינטראקציה ישירה.",
+                measure: "נמדדת יכולת הילד להשתמש באם כ'בסיס בטוח' (Secure Base) לחקירה וסקרנות של הצעצועים החדשים וסביבת החדר בעת שקט ומנוחה."
+            },
+            2: {
+                title: "אפיזודה 2: כניסת הזרה",
+                actors: "אם, תינוק ואישה זרה",
+                desc: "אישה זרה נכנסת לחדר. בדקה הראשונה היא יושבת בשקט מוחלט, בדקה השנייה היא מנהלת שיחה מתונה עם האם (כדי שהתינוק יבין שאין סכנה קיומית), ובדקה השלישית היא מתקרבת ומנסה לשחק עם התינוק.",
+                measure: "נמדדת חרדת הזרים (Stranger Anxiety) של התינוק, ומידת ההסתמכות שלו על נוכחות האם בסביבת דמות לא מוכרת."
+            },
+            3: {
+                title: "אפיזודה 3: פרידה ראשונה",
+                actors: "זר ותינוק",
+                desc: "האם עוזבת בשקט את החדר ומשאירה את התינוק עם הזרה. במידה והתינוק מפגין מצוקה ובכי קיצוני, האפיזודה מופסקת מטעמי שמירה על שלומו.",
+                measure: "נמדדת חרדת פרידה/נטישה (Separation Anxiety) ועוצמת הסטרס הפנימי בהיעדר האם, ועד כמה התינוק מסוגל לקבל נחמה מהזרה."
+            },
+            4: {
+                title: "אפיזודה 4: איחוד ראשון (Reunion)",
+                actors: "אם ותינוק",
+                desc: "האם חוזרת לחדר, משתהה ליד הדלת כדי לתת לתינוק הזדמנות להגיב אליה, ואז מנסה לנחמו ולהרגיעו. הזרה יוצאת בשקט.",
+                measure: "המשתנה החשוב ביותר! נמדד כיצד התינוק מקבל את האם: האם הוא יוזם מגע ונרגע (בטוח), מתעלם ממנה (נמנע), או כועס ומתנגד (אמביוולנטי)."
+            },
+            5: {
+                title: "אפיזודה 5: פרידה שנייה",
+                actors: "תינוק לבדו",
+                desc: "האם יוצאת שוב מהחדר, הפעם התינוק נשאר לבדו לחלוטין בחדר המעבדה למשך 3 דקות.",
+                measure: "הגברה חדה של רמת הסטרס והלחץ. נמדדת יכולת הוויסות העצמי (או חוסר היכולת) של התינוק בעת פרידה מוחלטת מכל דמות מבוגרת."
+            },
+            6: {
+                title: "אפיזודה 6: כניסה חוזרת של הזרה",
+                actors: "זרה ותינוק",
+                desc: "הזרה חוזרת לחדר ומנסה לנחם או להרגיע את התינוק במידה והוא בוכה או מראה סימני לחץ.",
+                measure: "נמדדת היכולת של התינוק להיעזר בדמות זרה לצורך הרגעה וויסות אינטראקטיבי במצבי לחץ גבוהים."
+            },
+            7: {
+                title: "אפיזודה 7: איחוד שני ואחרון",
+                actors: "אם ותינוק",
+                desc: "האם חוזרת שוב לחדר והזרה יוצאת. האם פונה לתינוק, מרימה אותו ומנסה לנחמו.",
+                measure: "הערכה סופית של סגנון ההתקשרות. נרשמים ציונים בארבעה מדדים: חיפוש קרבה, שמירת מגע, כעס, והימנעות (ציונים של 1-7)."
+            },
+            8: {
+                title: "אפיזודה 8: סיכום וקביעת דפוס",
+                actors: "אם, תינוק וצוות המחקרי",
+                desc: "השלמת התצפית. הצוות המחקרי סוכם את ציוני המפגשים המחודשים וקובע את סגנון ההתקשרות (בטוח, נמנע, אמביוולנטי, או לא מאורגן).",
+                measure: "הערכת מודל הפעולה הפנימי של התינוק (הייצוג הקוגניטיבי-רגשי של יחסי ההתקשרות)."
+            }
+        };
+
+        function selectEpisode(num) {
+            // Deactivate all buttons
+            document.querySelectorAll('.ep-btn').forEach(btn => {
+                btn.className = "ep-btn text-center p-2.5 rounded-xl border-2 border-slate-100 text-slate-600 hover:border-amber-300 text-xs font-bold transition-all";
+            });
+
+            // Activate current
+            const activeBtn = document.getElementById(`ep-btn-${num}`);
+            if (activeBtn) {
+                activeBtn.className = "ep-btn text-center p-2.5 rounded-xl border-2 border-amber-500 bg-amber-50 text-amber-950 text-xs font-bold transition-all";
+            }
+
+            // Update DOM content
+            const data = episodesData[num];
+            document.getElementById('ep-title').innerText = data.title;
+            document.getElementById('ep-actors').innerText = "נוכחים בחדר: " + data.actors;
+            document.getElementById('ep-desc').innerText = data.desc;
+            document.getElementById('ep-measure').innerText = data.measure;
+        }
+
+        // ------------------ INTERACTIVE COMPONENT 5: COMPREHENSIVE QUIZ ------------------
+        const quizQuestions = [
+            {
+                question: "מהי ההגדרה המדוייקת ביותר של מונח 'התפתחות' (Development) בפסיכולוגיה התפתחותית?",
+                options: [
+                    "שינויים כמותיים וקבועים החלים בגובה, במשקל ובקישורים הקוגניטיביים של הילד מרגע הלידה.",
+                    "שינויים איכותיים, תלויי-גיל וארגונים של התנהגות מחדש, שהם סדירים, מצטברים ובעלי כיוון.",
+                    "ההתקדמות הליניארית של המטען הגנטי המולד של הילד המונעת ממוטציות חיוביות וסתגלניות.",
+                    "הצטברות הידע הדקלרטיבי והפרוצדורלי שהילד רוכש דרך למידה חברתית בבית הספר."
+                ],
+                correctIndex: 1,
+                explanation: "לפי הגדרות היסוד: התפתחות כוללת שינויים איכותיים ותלויי-גיל המאורגנים מחדש. המאפיינים המכריעים הם: סדירות (רצף הגיוני), מצטברות (כל שלב כולל את קודמיו) ובעלי כיוון (לעבר מורכבות)."
+            },
+            {
+                question: "במחקר פורץ הדרך של Caspi et al. (2003) על אינטראקציית גן-סביבה (GxE), איזה אנזים שימש כגורם מגן הממתן התנהגות אנטי-חברתית בבגרות?",
+                options: [
+                    "אנזים ה-PKU (פנילקטונוריה)",
+                    "אנזים הדופמין מסוג DRD4",
+                    "אנזים ה-MAOA (Monoamine Oxidase A)",
+                    "אנזים האוקסיטוצין והקורטיזול"
+                ],
+                correctIndex: 2,
+                explanation: "המחקר של קספי הראה שהקשר בין התעללות בילדות להתנהגות אנטי-חברתית בבגרות ממותן על ידי הפרשת אנזים ה-MAOA. הפרשה גבוהה מהווה גורם מגן."
+            },
+            {
+                question: "תינוק בן 14 חודשים נרגע במהירות וחוזר לשחק בשמחה ובחופשיות ברגע שהאם חוזרת לחדר במהלך סיטואציית הזר (Strange Situation). איזה סגנון התקשרות תינוק זה מדגים?",
+                options: [
+                    "התקשרות בטוחה (Secure)",
+                    "התקשרות נמנעת (Avoidant)",
+                    "התקשרות אמביוולנטית/מתנגדת (Resistant)",
+                    "התקשרות בלתי מאורגנת (Disorganized)"
+                ],
+                correctIndex: 0,
+                explanation: "התנהגות זו היא הקלאסיקה של התקשרות בטוחה: התינוק משתמש באם כבסיס בטוח, יוזם מגע מנחם באיחוד, נרגע במהירות וחוזר למערכת החקירה שלו."
+            },
+            {
+                question: "לפי מודל הרגישות הדיפרנציאלית של ג'יי בלסקי (Jay Belsky), כיצד יתפתח 'ילד סחלב' בהשוואה ל'ילד שן הארי'?",
+                options: [
+                    "ילד סחלב הוא חסון וחסין מטבעו וישגשג בכל סביבה, בעוד ילד שן הארי זקוק לתנאי חממה ספציפיים.",
+                    "ילד סחלב יקרוס ויפגין קשיים משמעותיים בסביבה עוינת, אך ישגשג בצורה יוצאת דופן וייחודית בסביבה מטפחת ועשירה.",
+                    "אין הבדל ביניהם כאשר הסביבה היא מטפחת, ההבדל היחיד מתרחש בתנאי סטרס ודוחק.",
+                    "ילד סחלב מתפתח בקצב מהיר יותר תמיד בגלל מוטציה גנטית מסוג DRD4 המשפרת עיבוד דופמין."
+                ],
+                correctIndex: 1,
+                explanation: "השערת הסחלב של בלסקי ו-Boyce טוענת לרגישות גבוהה להקשר: בסביבה גרועה הסחלב יתפקד גרוע משן הארי, אך בסביבה מעולה הוא יפרח ויפגין ביצועים יוצאי דופן (מעל שן הארי)."
+            },
+            {
+                question: "מיהו החוקר שהראה לראשונה כי תינוקות בבתי יתומים סובלים מ'כשל בשגשוג' ומדיכאון אנקליטי בעקבות חסך בדמות טיפולית קבועה?",
+                options: [
+                    "רנה ספיץ (Rene Spitz)",
+                    "ג'ון בולבי (John Bowlby)",
+                    "הארלו (Harry Harlow)",
+                    "יורי ברונפנברנר (Urie Bronfenbrenner)"
+                ],
+                correctIndex: 0,
+                explanation: "רנה ספיץ עשה תצפיות בבתי יתומים (1945) והיה הראשון להוכיח שתינוקות מגיבים קשות ומפתחים דיכאון אנקליטי וכשל בשגשוג (failure to thrive) עקב חסך חמור בדמות התקשרות קבועה."
+            },
+            {
+                question: "איזה מעגל במודל האקולוגי של ברונפנברנר מייצג את הקשר והתיאום שבין ההורים של הילד לבין המטפלת במעון היום שלו?",
+                options: [
+                    "מערכת המיקרו (Microsystem)",
+                    "מערכת המסו (Mesosystem)",
+                    "מערכת האקסו (Exosystem)",
+                    "מערכת המאקרו (Macrosystem)"
+                ],
+                correctIndex: 1,
+                explanation: "מערכת המסו (Mesosystem) מורכבת מקשרי הגומלין והאינטראקציה שבין המיקרו-סיסטמות השונות בחיי הילד (כמו הקשר בין הבית למעון החינוכי)."
+            },
+            {
+                question: "ילד פג נולד בשבוע 30 להיריון. מה יהיה גילו המתוקן (Adjusted Age) כאשר גילו הכרונולוגי מיום הלידה בפועל הוא 6 חודשים?",
+                options: [
+                    "4 חודשים",
+                    "3.5 חודשים",
+                    "5 חודשים",
+                    "6 חודשים (אין צורך לתקן פגות לאחר חצי שנה)"
+                ],
+                correctIndex: 1,
+                explanation: "פג שנולד בשבוע 30 הפסיד 10 שבועות ברחם (40-30 = 10 שבועות, שזה כ-2.5 חודשים). נפחית אותם מגילו הכרונולוגי: 6 חודשים פחות 2.5 חודשים שווה 3.5 חודשים גיל מתוקן."
+            },
+            {
+                question: "מהו התחום הקריטי שנפגע ביותר ובא לידי ביטוי בהתנהגות התינוק ברגע המפגש המחודש (Reunion) בדפוס התקשרות בלתי מאורגן (Disorganized)?",
+                options: [
+                    "ישנה התנהגות מתוכננת של הימנעות מוחלטת שמטרתה למנוע דחייה נוספת מן המטפלים.",
+                    "התמוטטות של אסטרטגיית הוויסות, המאופיינת בקפיאה במקום, תנועות מוזרות וקונפליקט מובנה המערב פחד מהאם.",
+                    "התינוק אינו בוכה כלל והוא אדיש לחלוטין לקיומה של האם, אך מתנהג בחוצפה כלפי הדמות הזרה.",
+                    "משחק אינטנסיבי ופראי המדגים את נטיית הילד לחיפוש קבוע של ריגושים (DRD4)."
+                ],
+                correctIndex: 1,
+                explanation: "התקשרות לא מאורגנת (Mary Main) מוגדרת כהתמוטטות מוחלטת של אסטרטגיית וויסות הסטרס. היא מופיעה כתנועות לא סדירות, קפיאה, ואיחוד מפוחד הנובע מכך שההורה הוא מקור הסטרס ומקור ההגנה בו-זמנית."
+            },
+            {
+                question: "לפי תיאוריית ההתקשרות של בולבי, באיזה שלב הילד מפתח לראשונה 'שותפות מתוקנת מטרה' (Goal Corrected Partnership), המאופיינת בירידה באגוצנטריות וביכולת לנהל משא ומתן?",
+                options: [
+                    "שלב 1: טרום התקשרות (לידה עד 6 שבועות)",
+                    "שלב 2: התגבשות ההתקשרות (6 שבועות עד 6-8 חודשים)",
+                    "שלב 3: התקשרות ממוקדת (6-8 חודשים עד שנתיים)",
+                    "שלב 4: מגיל שנתיים-שלוש ומעלה"
+                ],
+                correctIndex: 3,
+                explanation: "השותפות מתוקנת המטרה מופיעה בשלב הרביעי (לקראת גיל שנתיים-שלוש ומעלה). בשלב זה המנטליזציה משתפרת והילד מבין שלאמא יש מטרות ורצונות משלה ומנהל איתה משא ומתן."
+            },
+            {
+                question: "במחקרים על אינטראקציית הורה-תינוק, כיצד מוגדר מונח הרגישות האימהית (Maternal Sensitivity) לפי מרי איינסוורת'?",
+                options: [
+                    "היכולת של האם לרסן את רגשות התינוק וללמדו גבולות נוקשים על מנת 'להוציא ממנו את השטן' (כמו סוזנה ווסלי).",
+                    "קריאה נכונה ומדויקת של האיתותים של הילד, פירוש נכון שלהם, ותגובה מהירה ומותאמת אליהם.",
+                    "הקפדה נוקשה על משטר שינה והאכלה קבועים ללא קשר לרמת הבכי של הילד.",
+                    "היכולת להגן על הילד מפני כל מצב סטרס או חשיפה לגירויים חדשים במהלך השנתיים הראשונות."
+                ],
+                correctIndex: 1,
+                explanation: "רגישות אימהית מוגדרת על פי איינסוורת' באמצעות 'השילוש הקדוש': 1. זיהוי וקריאה של האות ההתנהגותי, 2. פירוש פסיכולוגי נכון של האות, 3. תגובה מהירה ומותאמת התפתחותית."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionIndex = null;
+        let answerChecked = false;
+
+        function loadQuestion() {
+            selectedOptionIndex = null;
+            answerChecked = false;
+            document.getElementById('explanation-box').classList.add('hidden');
+            document.getElementById('btn-submit-answer').classList.remove('hidden');
+            document.getElementById('btn-next-question').classList.add('hidden');
+
+            const currentQ = quizQuestions[currentQuestionIndex];
+            document.getElementById('quiz-progress').innerText = `שאלה ${currentQuestionIndex + 1} מתוך 10`;
+            document.getElementById('quiz-question').innerText = currentQ.question;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            currentQ.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-right p-4 rounded-xl border border-slate-200 hover:border-teal-500 hover:bg-teal-50/20 text-xs sm:text-sm transition-all focus:outline-none focus:ring-2 focus:ring-teal-500";
+                btn.onclick = () => selectOption(idx, btn);
+                btn.innerText = opt;
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(index, buttonEl) {
+            if (answerChecked) return;
+            selectedOptionIndex = index;
+
+            // Clear selected classes from all
+            document.querySelectorAll('#quiz-options button').forEach(btn => {
+                btn.className = "w-full text-right p-4 rounded-xl border border-slate-200 hover:border-teal-500 hover:bg-teal-50/20 text-xs sm:text-sm transition-all focus:outline-none";
+            });
+
+            // Set select style
+            buttonEl.className = "w-full text-right p-4 rounded-xl border-2 border-teal-500 bg-teal-50/30 text-xs sm:text-sm transition-all font-medium";
+        }
+
+        function submitAnswer() {
+            if (selectedOptionIndex === null) {
+                showAlert('חסרה בחירה', 'נא לבחור אחת מן האפשרויות המוצעות בטרם לחיצה על אישור.', '⚠️');
+                return;
+            }
+
+            answerChecked = true;
+            const currentQ = quizQuestions[currentQuestionIndex];
+            const optionButtons = document.querySelectorAll('#quiz-options button');
+
+            // Style options based on correctness
+            optionButtons.forEach((btn, idx) => {
+                if (idx === currentQ.correctIndex) {
+                    btn.className = "w-full text-right p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 text-xs sm:text-sm font-bold";
+                } else if (idx === selectedOptionIndex) {
+                    btn.className = "w-full text-right p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-900 text-xs sm:text-sm";
+                } else {
+                    btn.className = "w-full text-right p-4 rounded-xl border border-slate-100 text-slate-400 text-xs sm:text-sm";
+                }
+            });
+
+            // Score update
+            let feedbackTitle = "תשובה שגויה ❌";
+            if (selectedOptionIndex === currentQ.correctIndex) {
+                score += 10;
+                feedbackTitle = "כל הכבוד! תשובה נכונה ✅";
+            }
+
+            // Show explanation
+            const explBox = document.getElementById('explanation-box');
+            explBox.innerHTML = `
+                <strong class="block text-slate-800 mb-1 text-xs">${feedbackTitle}</strong>
+                ${currentQ.explanation}
+            `;
+            explBox.classList.remove('hidden');
+
+            document.getElementById('btn-submit-answer').classList.add('hidden');
+            document.getElementById('btn-next-question').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                // Show Scoreboard
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('quiz-scoreboard').classList.remove('hidden');
+                document.getElementById('final-score').innerText = score;
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('quiz-scoreboard').classList.add('hidden');
+            loadQuestion();
+        }
+
+        // Initialize quiz first load
+        loadQuestion();
+    </script>
+</body>
+</html>
